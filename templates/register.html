@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Register</title>
+		<link
+			rel="stylesheet"
+			href="{{ url_for('static', filename='css/style.css') }}"
+		/>
+	</head>
+	<body>
+		<div class="container">
+			<h2>Register</h2>
+			{% if error %}
+			<div class="error-message">{{ error }}</div>
+			{% endif %}
+			<form action="/register" method="post">
+				<div>
+					<label for="username">Username:</label>
+					<input type="text" id="username" name="username" required />
+				</div>
+				<div>
+					<label for="email">Email:</label>
+					<input type="email" id="email" name="email" required />
+				</div>
+				<div>
+					<label for="password">Password:</label>
+					<input type="password" id="password" name="password" required />
+				</div>
+				<div>
+					<label for="security_question">Security Question:</label>
+					<input
+						type="text"
+						id="security_question"
+						name="security_question"
+						required
+					/>
+				</div>
+				<div>
+					<label for="security_answer">Security Answer:</label>
+					<input
+						type="text"
+						id="security_answer"
+						name="security_answer"
+						required
+					/>
+				</div>
+				<button type="submit">Register</button>
+			</form>
+			{% if totp_secret %}
+			<div class="totp-secret">
+				<p>Your TOTP secret is: <strong>{{ totp_secret }}</strong></p>
+				<p>
+					Please save this secret in a secure place. You will need it to
+					generate TOTP codes for login.
+				</p>
+				<p>Scan the following QR code with your TOTP app:</p>
+				<img
+					src="https://api.qrserver.com/v1/create-qr-code/?data=otpauth://totp/YourAppName:{{ email }}?secret={{ totp_secret }}&issuer=YourAppName"
+					alt="TOTP QR Code"
+				/>
+			</div>
+			{% endif %}
+			<div class="links">
+				<a href="/login">Already have an account? Login</a>
+			</div>
+		</div>
+	</body>
+</html>

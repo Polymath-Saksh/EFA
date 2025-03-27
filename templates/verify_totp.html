@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Verify TOTP</title>
+		<link rel="stylesheet" href="/static/css/style.css" />
+	</head>
+	<body>
+		<div class="container">
+			<h2>Verify TOTP</h2>
+			<form action="/verify_totp" method="POST">
+				<input type="hidden" name="username" value="{{ username }}" />
+				<div class="form-group">
+					<label for="totp">TOTP:</label>
+					<input type="text" id="totp" name="totp" required />
+					{% if error %}
+					<p class="error">{{ error }}</p>
+					{% endif %}
+				</div>
+				<button type="submit">Verify TOTP</button>
+			</form>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Verify Security Question</title>
+		<link rel="stylesheet" href="/static/css/style.css" />
+	</head>
+	<body>
+		<div class="container">
+			<h2>Verify Security Question</h2>
+			<form action="/verify_security_question" method="POST">
+				<input type="hidden" name="username" value="{{ username }}" />
+				<div class="form-group">
+					<p>Question: {{ question }}</p>
+					<label for="security_answer">Security Answer:</label>
+					<input
+						type="text"
+						id="security_answer"
+						name="security_answer"
+						required
+					/>
+					{% if error %}
+					<p class="error">{{ error }}</p>
+					{% endif %}
+				</div>
+				<button type="submit">Verify Security Answer</button>
+			</form>
+		</div>
+	</body>
+</html>
