@@ -76,6 +76,3 @@ The application uses different authentication methods based on the time of login
 - Ensure that the MongoDB URI is correctly set in the `.env` file before running the application.
 - IP for network access are enabled for the database.
 
-
-## Future Enhancements
-- 
